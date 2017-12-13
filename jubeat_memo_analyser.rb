@@ -19,10 +19,10 @@ puts "Level: #{level}"
 bpm = important.match(/BPM: (\d.*)/).captures[0]
 puts "BPM: #{bpm}"
 textvalues = important.match(/^(.*)\n(.*)\n(.*)/).captures
-songtitle = textvalues[0].romaji
-songartist = textvalues[1].romaji
+songtitle = textvalues[0].romaji.gsub(/\p{Han}/,'')
+songartist = textvalues[1].romaji.gsub(/\p{Han}/,'')
 
-case textvalues[2]
+case textvalues[2].strip
 when "BASIC"
 	songdif = '1'
 	songdif2 = 'BSC'
@@ -32,6 +32,8 @@ when "ADVANCED"
 when "EXTREME"
 	songdif = '3'
 	songdif2 = 'EXT'
+else
+	puts "#{textvalues[2]} error"
 end
 
 puts "Song title: #{songtitle}"

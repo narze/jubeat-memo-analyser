@@ -19,7 +19,7 @@ puts "Level: #{level}"
 bpm = important.match(/BPM: (\d.*)/).captures[0]
 puts "BPM: #{bpm}"
 textvalues = important.match(/^(.*)\n(.*)\n(.*)/).captures
-songtitle = textvalues[0].romaji
+songtitle = textvalues[0].romaji.gsub(/\p{Han}/,'')
 #songartist = textvalues[1].romaji
 songartist = "Unknown"
 case textvalues[1].strip
