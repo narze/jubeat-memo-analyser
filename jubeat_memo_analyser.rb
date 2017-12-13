@@ -21,8 +21,14 @@ puts "BPM: #{bpm}"
 textvalues = important.match(/^(.*)\n(.*)\n(.*)/).captures
 songtitle = textvalues[0].romaji.gsub(/\p{Han}/,'')
 songartist = textvalues[1].romaji.gsub(/\p{Han}/,'')
+diftemp = textvalues[2]
 
-case textvalues[2].strip
+if songartist == "BASIC" or songartist == "ADVANCED" or songartist == "EXTREME"
+	songartist = "Unknown"
+	diftemp = textvalues[1]
+end
+
+case diftemp
 when "BASIC"
 	songdif = '1'
 	songdif2 = 'BSC'
