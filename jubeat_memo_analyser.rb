@@ -4,6 +4,7 @@
 # <!--@@@@@-->[\S\s]*<\/p>\n regex to grab just the data I need from the webpage
 require "highline/import"
 require "HTTParty"
+require "mojinizer"
 
 page1 = ask "Enter Cosmos Memo URL: "
 page = HTTParty.get("#{page1}")
@@ -18,8 +19,8 @@ puts "Level: #{level}"
 bpm = important.match(/BPM: (\d.*)/).captures[0]
 puts "BPM: #{bpm}"
 textvalues = important.match(/^(.*)\n(.*)\n(.*)/).captures
-songtitle = textvalues[0]
-songartist = textvalues[1]
+songtitle = textvalues[0].romaji
+songartist = textvalues[1].romaji
 
 case textvalues[2]
 when "BASIC"
